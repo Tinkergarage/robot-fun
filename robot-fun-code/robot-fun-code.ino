@@ -1,4 +1,4 @@
-#include "DualMC33926MotorShield.h"
+#include "TinkerRobot.h"
 
 #define trigPin 3
 #define echoPin 5
@@ -16,7 +16,7 @@ enum directions {
   left
 };
 
-int prevStatus = 0;
+int prevStatus = none;
 int status = stopped;
 
 int m1Speed = 0;
@@ -24,17 +24,7 @@ int m2Speed = 0;
 
 unsigned long startTurningTime = 0;
 
-DualMC33926MotorShield md;
-
-void stopIfFault()
-{
-  if (md.getFault())
-  {
-    Serial.println("fault");
-    delay(12);
-    while(1);
-  }
-}
+TinkerRobotRed md;
 
 void setup()
 {
@@ -43,7 +33,7 @@ void setup()
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   
-  md.init();
+  md.begin();
 }
 
 void loop()
@@ -55,7 +45,6 @@ void loop()
   Serial.print("Status: ");
   Serial.println(status);
 
-  stopIfFault();
   delay(12);
 }
 
