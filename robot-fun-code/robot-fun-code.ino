@@ -1,7 +1,7 @@
 #include "TinkerRobot.h"
 
-#define trigPin 3
-#define echoPin 5
+#define trigPin 2
+#define echoPin 3
 
 enum statuses {
   none,
@@ -138,26 +138,26 @@ void changeStatus(int s)
 
 void moveForward()
 {
-  for (int i = 200; i <= 300; i++)
+  for (int i = 100; i <= 200; i++)
   {
     m1Speed = m2Speed = i;
-    md.setM1Speed(m1Speed);
-    md.setM2Speed(m2Speed);
+    md.move(MOTOR1, m1Speed);
+    md.move(MOTOR2, m2Speed);
   }
 }
 
 void needToStop()
 {
   if((prevStatus==forward || prevStatus==turning) && (m1Speed > 0 || m2Speed > 0) ){  
-    for (int i = 400; i > 100; i--)
+    for (int i = 255; i > 60; i--)
     {
       m1Speed += (m1Speed > 0 ? -1 : 1);
       m2Speed += (m2Speed > 0 ? -1 : 1);
-      md.setM1Speed(m1Speed);
-      md.setM2Speed(m2Speed);
+      md.move(MOTOR1, m1Speed);
+      md.move(MOTOR2, m2Speed);
     }  
-    md.setM1Speed(m1Speed=0);
-    md.setM2Speed(m2Speed=0);
+    md.move(MOTOR1, m1Speed=0);
+    md.move(MOTOR2, m2Speed=0);
   }
 }
 
@@ -168,9 +168,9 @@ void turn(int d)
 
   direction = d;
 
-  m1Speed = -1 * ( m2Speed = 200 * (direction == right ? 1 : -1));
-  md.setM1Speed(m1Speed);
-  md.setM2Speed(m2Speed);
+  m1Speed = -1 * ( m2Speed = 100 * (direction == right ? 1 : -1));
+  md.move(MOTOR1, m1Speed);
+  md.move(MOTOR2, m2Speed);
 
   startTurningTime = millis();
 }
