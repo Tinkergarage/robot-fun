@@ -26,7 +26,7 @@ GND | GND
 
 ### Motor driver
 Arduino (shield) | Right motor | Left motor | Battery
--------- | --- | ---
+-------- | --- | --- | ---
 M1A | GND
 M1B | VCC
 GND |  |  | GND
@@ -55,13 +55,13 @@ GND | GND
 
 ### Motor driver
 Arduino | Motor Driver | Right motor | Left motor | Battery
--------- | ---
+-------- | --- | --- | --- | ---
 VIN | VM |  |  | +6V
 +5V | VCC
-- | A01 | VCC
-- | A02 | GND
-- | B01 |  | VCC
-- | B02 |  | GND
+ | A01 | VCC
+ | A02 | GND
+ | B01 |  | VCC
+ | B02 |  | GND
 GND | GND |  |  | GND
 5 | PWMA
 6 | PWMB
